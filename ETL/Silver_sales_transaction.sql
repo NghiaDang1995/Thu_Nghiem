@@ -5,7 +5,6 @@ with CTE as
 	*,
 	row_number () over(partition by order_id order by ingestion_at desc) as "row_number"
 from bronze.sales_transaction)
-
 select 
 	"index",
 	order_id,

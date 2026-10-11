@@ -1,7 +1,6 @@
 
 
-
-create table silver.sales_transaction as
+CREATE TABLE silver.employee AS
 with CTE as (
 select *,
 		row_number () over (partition by employee_id order by ingestion_at desc) as "row_number"
@@ -18,10 +17,7 @@ select
 	region,
 	team,
 	email,
-	case
-		when phone is null then null
-		else '0' || cast (phone as varchar)
-	end as phone,
+	'0' || CAST(phone AS VARCHAR) AS phone,
 	status,
 	"version",
 	cast(effective_date as date) as effective_date,
